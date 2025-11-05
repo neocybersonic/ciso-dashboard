@@ -28,11 +28,12 @@ urlpatterns = [
 """New code per ChatGPT"""
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from core.views import hello, healthz
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", hello, name="hello"),
+    #path("", hello, name="hello"),
+    path("", include("dashboard.urls")),  # landing page
     path("healthz/", healthz, name="healthz"),
 ]

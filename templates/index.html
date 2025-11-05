@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}CISO Dashboard — Overview{% endblock %}
+{% block content %}
+  <!-- Blank landing with placeholder sections -->
+  <div class="grid gap-4 md:grid-cols-3">
+    <div class="card">
+      <div class="metric-title">Open Incidents</div>
+      <div class="metric-value">—</div>
+      <div class="mt-1 text-sm text-emerald-500"> </div>
+    </div>
+    <div class="card">
+      <div class="metric-title">MTTR</div>
+      <div class="metric-value">—</div>
+    </div>
+    <div class="card">
+      <div class="metric-title">EDR Coverage</div>
+      <div class="metric-value">—</div>
+    </div>
+  </div>
+
+  <div class="mt-6 grid gap-4 md:grid-cols-2">
+    <div class="card h-64">Incidents Over Time (placeholder)</div>
+    <div class="card h-64">Vulnerabilities by Type (placeholder)</div>
+  </div>
+
+  <div class="mt-6 card">
+    <div class="text-sm font-semibold mb-3">Recent Incidents</div>
+    <div class="text-slate-500">No data yet. Links above are placeholders as requested.</div>
+  </div>
+{% endblock %}
