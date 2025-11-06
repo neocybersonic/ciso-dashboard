@@ -28,6 +28,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Enforce login across the site (add our custom middleware just below)
+    'core.middleware.LoginRequiredMiddleware',
+    # Block write methods for non-admins
+    'core.middleware.ReadOnlyRoleMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -48,4 +52,11 @@ DATABASES = {'default': {'ENGINE':'django.db.backends.sqlite3','NAME': BASE_DIR 
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "home"   # set this to your landing page name
+LOGOUT_REDIRECT_URL = "login"
+
+####
+
+
 
