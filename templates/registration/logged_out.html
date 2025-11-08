@@ -1,0 +1,9 @@
+{% extends "registration/base_auth.html" %}
+{% block title %}Logged out{% endblock %}
+{% block content %}
+<h1>Signed Out</h1>
+<p>You have been logged out successfully.</p>
+<div class="message">
+  <a href="{% url 'login' %}">Sign in again</a>
+</div>
+{% endblock %}

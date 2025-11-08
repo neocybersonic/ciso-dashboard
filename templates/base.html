@@ -1,4 +1,5 @@
 {% load static %}
+{% load user_extras %}
 <!DOCTYPE html>
 <html lang="en" class="h-full">
   <head>
@@ -14,38 +15,86 @@
         <div class="flex items-center justify-between mb-6">
           <div class="text-xl font-semibold">CISO Dashboard</div>
           <button id="theme-toggle" class="rounded-lg p-2 hover:bg-slate-800" title="Toggle theme">
-            <!-- simple icon -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m13.435 6.364l-.707-.707M6.272 6.272l-.707-.707m12.142 0l-.707.707M6.272 17.728l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
             </svg>
           </button>
         </div>
+
         <nav class="space-y-2">
           <a href="#" class="nav-link">🏠 Overview</a>
-          <a href="#" class="nav-link">⚠️ Incidents</a>
-          <a href="#" class="nav-link">🔍 Vulnerabilities</a>
-          <a href="#" class="nav-link">🧑‍🤝‍🧑 Staff / Org</a>
           <a href="#" class="nav-link">📊 Metrics</a>
+          <a href="#" class="nav-link">🚨 Incidents</a>
+          <a href="#" class="nav-link">🐞 Vulnerabilities</a>
+          <a href="#" class="nav-link">🚦 Controls</a>
+          <a href="#" class="nav-link">⚠️ Risks</a>
+          <a href="#" class="nav-link">🛰️ SOC</a>
+          <a href="#" class="nav-link">🎫 Requests & Tickets</a>
+          <a href="#" class="nav-link">📚 Knowledge Base</a>
+
+          <hr class="border-slate-700 my-4" />
+          <a href="#" class="nav-link">👥 Administration</a>
           <a href="#" class="nav-link">⚙️ Settings</a>
         </nav>
       </aside>
 
       <!-- Header -->
-      <header class="flex items-center gap-3 p-4 bg-white/70 dark:bg-slate-950/50 backdrop-blur sticky top-0">
-        <input class="input md:max-w-md" placeholder="Search incidents, people, systems…" />
-        <button class="btn-primary">New Incident</button>
-        <div class="ml-auto flex items-center gap-3">
-          <button class="rounded-lg p-2 hover:bg-slate-200/50 dark:hover:bg-slate-800" title="Notifications">🔔</button>
-          <div class="h-8 w-8 rounded-full bg-slate-400/40"></div>
+ <header class="flex items-center gap-3 p-4 bg-white/70 dark:bg-slate-950/50 backdrop-blur sticky top-0">
+    <input class="input md:max-w-md" placeholder="Search incidents, people, systems…" />
+    <button class="btn-primary">New Incident</button>
+
+    <div class="ml-auto flex items-center gap-3">
+      <button class="rounded-lg p-2 hover:bg-slate-200/50 dark:hover:bg-slate-800" title="Notifications">🔔</button>
+
+      <!-- User menu -->
+      <div class="relative" id="user-menu">
+        <button
+          id="user-menu-button"
+          class="h-9 w-9 rounded-full bg-slate-400/40 dark:bg-slate-700/60 flex items-center justify-center text-sm font-semibold hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-600 focus:outline-none"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="user-menu-items"
+        >
+          {{ request.user|initials }}
+        </button>
+
+        <!-- Dropdown -->
+        <div
+          id="user-menu-items"
+          class="hidden absolute right-0 mt-2 w-48 rounded-xl shadow-lg bg-white dark:bg-slate-900 ring-1 ring-black/5 dark:ring-white/10 py-1"
+          role="menu"
+          aria-labelledby="user-menu-button"
+          tabindex="-1"
+        >
+          <a
+            href="{% url 'profile' %}"
+            class="block px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
+            role="menuitem"
+            tabindex="-1"
+          >My Profile</a>
+
+          <form action="{% url 'logout' %}" method="post" role="none">
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="w-full text-left block px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
+              role="menuitem"
+              tabindex="-1"
+            >Logout</button>
+          </form>
         </div>
-      </header>
+      </div>
+      <!-- /User menu -->
+    </div>
+  </header>
 
       <!-- Main -->
       <main class="p-4">
         {% block content %}{% endblock %}
       </main>
     </div>
+
     <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

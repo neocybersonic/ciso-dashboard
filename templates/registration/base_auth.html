@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}CISO Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/build.css' %}" />
+  </head>
+  <body class="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+    <div class="min-h-screen flex flex-col">
+      <header class="p-4 bg-brand-navy text-white flex items-center justify-between">
+        <div class="text-lg font-semibold">CISO Dashboard</div>
+        <button id="theme-toggle" class="rounded-lg p-2 hover:bg-slate-800" title="Toggle theme">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m13.435 6.364l-.707-.707M6.272 6.272l-.707-.707m12.142 0l-.707.707M6.272 17.728l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        </button>
+      </header>
+
+      <main class="flex-1 p-6 flex items-center justify-center">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
