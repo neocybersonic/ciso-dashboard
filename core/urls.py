@@ -1,8 +1,10 @@
-
-# core/urls.py
-from django.urls import path
+from django.urls import path, include
 from . import views
 
+app_name = "core"
+
 urlpatterns = [
-    path("", views.home, name="home"),   # landing page for your app
+    path("", views.home, name="home"),
+    path("profile/", views.ProfileDetailView.as_view(), name="profile"),
+    
 ]

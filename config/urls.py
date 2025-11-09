@@ -29,18 +29,14 @@ urlpatterns = [
 
 from django.contrib import admin
 from django.urls import path, include
-from core.views import hello, healthz
+from core.views import healthz
 from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),
-    #path("", hello, name="hello"),
-    path("", include("dashboard.urls")),  # landing page
     path("healthz/", healthz, name="healthz"),
-    path("", include("core.urls")),  # your app routes; ensure 'home' exists
- 
-    
+    path("", include("core.urls")),  # yosubliur app routes; ensure 'home' exists
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 

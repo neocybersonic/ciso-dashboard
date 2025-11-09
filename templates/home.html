@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="p-10 bg-white border rounded shadow-sm">
+    <h1 class="text-2xl font-semibold mb-3">{{ APP_NAME }}</h1>
+    <p class="text-gray-600">
+      Welcome to {{ APP_NAME }}.
+    </p>
+
+    <div class="mt-6 grid gap-4">
+      <div class="p-4 border rounded hover:bg-gray-50">
+        <h2 class="font-semibold">Getting Started</h2>
+        <p class="text-sm text-gray-500">
+          Use the sidebar to explore available modules and features.
+        </p>
+      </div>
+
+      <div class="p-4 border rounded hover:bg-gray-50">
+        <h2 class="font-semibold">Next Steps</h2>
+        <ul class="list-disc ml-5 text-sm text-gray-600">
+          <li>Review your profile settings</li>
+          <li>Connect external data sources</li>
+          <li>Customize this layout for your customer instance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

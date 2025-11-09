@@ -41,7 +41,7 @@ class LoginRequiredMiddleware(MiddlewareMixin):
 
         # Require auth everywhere else
         if not request.user.is_authenticated:
-            login_url = reverse(settings.LOGIN_URL)  # usually "login" -> "/login/"
+            login_url = reverse(settings.LOGIN_URL)
             return redirect(f"{login_url}?next={request.path}")
 
         return None

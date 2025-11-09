@@ -5,7 +5,6 @@
 <div class="w-full max-w-md">
   <div class="card shadow-card">
     <h1 class="text-2xl font-semibold mb-1">Sign in</h1>
-    <p class="text-sm text-slate-500 mb-4">Use your credentials to access the dashboard.</p>
 
     {% if form.errors %}
       <div class="mb-3 rounded-lg border border-red-300 bg-red-50 text-red-800 p-3 text-sm">
@@ -32,7 +31,6 @@
 
     <div class="mt-4 text-sm text-slate-500 flex items-center justify-between">
       <a class="underline hover:no-underline" href="{% url 'password_reset' %}">Forgot password?</a>
-      <a class="underline hover:no-underline" href="/">Back to home</a>
     </div>
   </div>
 </div>

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-2xl px-4 md:px-6">
+  <div class="p-6 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow">
+    <h1 class="text-2xl font-semibold mb-6 text-slate-900 dark:text-slate-100">My Profile</h1>
+
+    <!-- 2-column label/value layout with solid contrast -->
+    <dl class="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-4">
+      <dt class="text-sm font-medium text-slate-700 dark:text-slate-300">Username</dt>
+      <dd class="sm:col-span-2 text-sm text-slate-900 dark:text-slate-100 break-words">
+        {{ user_obj.get_username }}
+      </dd>
+
+      <dt class="text-sm font-medium text-slate-700 dark:text-slate-300">Full name</dt>
+      <dd class="sm:col-span-2 text-sm text-slate-900 dark:text-slate-100">
+        {{ user_obj.get_full_name|default:"—" }}
+      </dd>
+
+      <dt class="text-sm font-medium text-slate-700 dark:text-slate-300">Email</dt>
+      <dd class="sm:col-span-2 text-sm text-slate-900 dark:text-slate-100">
+        {{ user_obj.email|default:"—" }}
+      </dd>
+
+      <dt class="text-sm font-medium text-slate-700 dark:text-slate-300">Last login</dt>
+      <dd class="sm:col-span-2 text-sm text-slate-900 dark:text-slate-100">
+        {{ user_obj.last_login|date:"Y-m-d H:i" }}
+      </dd>
+
+      <dt class="text-sm font-medium text-slate-700 dark:text-slate-300">Joined</dt>
+      <dd class="sm:col-span-2 text-sm text-slate-900 dark:text-slate-100">
+        {{ user_obj.date_joined|date:"Y-m-d" }}
+      </dd>
+    </dl>
+
+  </div>
+</div>
+{% endblock %}

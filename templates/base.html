@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}CISO Dashboard{% endblock %}</title>
+    <title>{% block title %}{{ APP_NAME }}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/build.css' %}" />
   </head>
   <body class="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
@@ -13,7 +13,7 @@
       <!-- Sidebar -->
       <aside class="row-span-2 bg-brand-navy text-white p-4">
         <div class="flex items-center justify-between mb-6">
-          <div class="text-xl font-semibold">CISO Dashboard</div>
+          <div class="text-xl font-semibold">{{ APP_NAME }}</div>
           <button id="theme-toggle" class="rounded-lg p-2 hover:bg-slate-800" title="Toggle theme">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -23,15 +23,9 @@
         </div>
 
         <nav class="space-y-2">
-          <a href="#" class="nav-link">🏠 Overview</a>
-          <a href="#" class="nav-link">📊 Metrics</a>
-          <a href="#" class="nav-link">🚨 Incidents</a>
-          <a href="#" class="nav-link">🐞 Vulnerabilities</a>
-          <a href="#" class="nav-link">🚦 Controls</a>
-          <a href="#" class="nav-link">⚠️ Risks</a>
-          <a href="#" class="nav-link">🛰️ SOC</a>
-          <a href="#" class="nav-link">🎫 Requests & Tickets</a>
-          <a href="#" class="nav-link">📚 Knowledge Base</a>
+          <a href="{% url 'core:home' %}" class="nav-link">🏠 Home</a>
+          <a href="#" class="nav-link">📊 Module 2</a>
+          <a href="#" class="nav-link">🚨 Module 3</a>
 
           <hr class="border-slate-700 my-4" />
           <a href="#" class="nav-link">👥 Administration</a>
@@ -41,8 +35,8 @@
 
       <!-- Header -->
  <header class="flex items-center gap-3 p-4 bg-white/70 dark:bg-slate-950/50 backdrop-blur sticky top-0">
-    <input class="input md:max-w-md" placeholder="Search incidents, people, systems…" />
-    <button class="btn-primary">New Incident</button>
+    <input class="input md:max-w-md" placeholder="Search…" />
+    <button class="btn-primary">Button</button>
 
     <div class="ml-auto flex items-center gap-3">
       <button class="rounded-lg p-2 hover:bg-slate-200/50 dark:hover:bg-slate-800" title="Notifications">🔔</button>
@@ -68,7 +62,7 @@
           tabindex="-1"
         >
           <a
-            href="{% url 'profile' %}"
+            href="{% url 'core:profile' %}"
             class="block px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
             role="menuitem"
             tabindex="-1"
@@ -96,5 +90,12 @@
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Footer -->
+  <footer class="w-full border-t bg-white text-center text-sm text-gray-500 py-4 mt-auto">
+  <p>&copy; {% now "Y" %} TLB Tech &amp; Media &bull;
+      <a href="https://tlbtechmedia.com" class="underline hover:text-gray-700">tlbtechmedia.com</a>
+    </p>
+  </footer>
   </body>
 </html>

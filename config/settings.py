@@ -17,7 +17,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
-    'core', 'dashboard', 'widget_tweaks',
+    'core', 'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -44,6 +44,7 @@ TEMPLATES = [{
         'django.template.context_processors.request',
         'django.contrib.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
+        'core.context_processors.app_name',
     ]},
 }]
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -53,7 +54,7 @@ DATABASES = {'default': {'ENGINE':'django.db.backends.sqlite3','NAME': BASE_DIR 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "home"   # set this to your landing page name
+LOGIN_REDIRECT_URL = "core:home"   # set this to your landing page name
 LOGOUT_REDIRECT_URL = "login"
 
 ####
