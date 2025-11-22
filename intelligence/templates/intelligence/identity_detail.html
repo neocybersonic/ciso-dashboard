@@ -1,0 +1,14 @@
+{% include "intelligence/_detail_base.html" with subtitle="Identity detail" %}
+{% block fields %}
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><dt class="font-semibold">Username</dt><dd>{{ object.username|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Email</dt><dd>{{ object.email|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Type</dt><dd>{{ object.get_type_display }}</dd></div>
+    <div><dt class="font-semibold">Status</dt><dd>{{ object.get_status_display }}</dd></div>
+    <div><dt class="font-semibold">Org Unit</dt><dd>{{ object.org_unit|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Manager</dt><dd>{{ object.manager_identity|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Owner Team</dt><dd>{{ object.owner_team|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Last Login</dt><dd>{{ object.last_login_at|default:"—" }}</dd></div>
+    <div class="md:col-span-2"><dt class="font-semibold">Risk Flags</dt><dd>{{ object.risk_flags|default:"[]" }}</dd></div>
+  </dl>
+{% endblock %}

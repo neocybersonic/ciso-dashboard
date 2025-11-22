@@ -1,0 +1,20 @@
+{% include "intelligence/_list_base.html" with title="Assets" headers=headers %}
+{% block rows %}
+  {% for a in object_list %}
+  <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30">
+    <td class="px-4 py-2 font-medium">
+      <a class="text-indigo-600 dark:text-indigo-400 hover:underline" href="{% url 'intelligence:asset_detail' a.id %}">{{ a.name }}</a>
+    </td>
+    <td class="px-4 py-2">{{ a.get_type_display }}</td>
+    <td class="px-4 py-2">{{ a.get_criticality_display }}</td>
+    <td class="px-4 py-2">{{ a.get_data_classification_display }}</td>
+    <td class="px-4 py-2">{{ a.owner_team|default:"—" }}</td>
+    <td class="px-4 py-2">{{ a.environment|default:"—" }}</td>
+    <td class="px-4 py-2">{{ a.location|default:"—" }}</td>
+    <td class="px-4 py-2">{{ a.get_lifecycle_state_display }}</td>
+    <td class="px-4 py-2 text-sm text-slate-500 dark:text-slate-400">{{ a.updated_at|date:"Y-m-d H:i" }}</td>
+  </tr>
+  {% empty %}
+  <tr><td class="px-4 py-6 text-slate-500 dark:text-slate-400" colspan="9">No assets yet.</td></tr>
+  {% endfor %}
+{% endblock %}

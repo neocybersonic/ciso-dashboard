@@ -1,0 +1,19 @@
+{% include "intelligence/_list_base.html" with title="Identities" headers=headers %}
+{% block rows %}
+  {% for i in object_list %}
+  <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30">
+    <td class="px-4 py-2 font-medium">
+      <a class="text-indigo-600 dark:text-indigo-400 hover:underline" href="{% url 'intelligence:identity_detail' i.id %}">{{ i.display_name|default:i.username|default:i.id }}</a>
+    </td>
+    <td class="px-4 py-2">{{ i.username|default:"—" }}</td>
+    <td class="px-4 py-2">{{ i.email|default:"—" }}</td>
+    <td class="px-4 py-2">{{ i.get_type_display }}</td>
+    <td class="px-4 py-2">{{ i.get_status_display }}</td>
+    <td class="px-4 py-2">{{ i.owner_team|default:"—" }}</td>
+    <td class="px-4 py-2">{{ i.last_login_at|default:"—" }}</td>
+    <td class="px-4 py-2 text-sm text-slate-500 dark:text-slate-400">{{ i.updated_at|date:"Y-m-d H:i" }}</td>
+  </tr>
+  {% empty %}
+  <tr><td class="px-4 py-6 text-slate-500 dark:text-slate-400" colspan="8">No identities yet.</td></tr>
+  {% endfor %}
+{% endblock %}

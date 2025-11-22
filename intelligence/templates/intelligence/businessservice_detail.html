@@ -1,0 +1,8 @@
+{% include "intelligence/_detail_base.html" with subtitle="Business service detail" %}
+{% block fields %}
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><dt class="font-semibold">Owner Team</dt><dd>{{ object.owner_team|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Criticality</dt><dd>{{ object.get_criticality_display }}</dd></div>
+    <div class="md:col-span-2"><dt class="font-semibold">Description</dt><dd>{{ object.description|default:"—" }}</dd></div>
+  </dl>
+{% endblock %}

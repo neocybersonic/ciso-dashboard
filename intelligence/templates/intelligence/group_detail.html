@@ -1,0 +1,20 @@
+{% include "intelligence/_detail_base.html" with subtitle="Group detail" %}
+{% block fields %}
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><dt class="font-semibold">Type</dt><dd>{{ object.get_type_display }}</dd></div>
+    <div><dt class="font-semibold">Owner Team</dt><dd>{{ object.owner_team|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Lifecycle</dt><dd>{{ object.get_lifecycle_state_display }}</dd></div>
+    <div class="md:col-span-2"><dt class="font-semibold">Description</dt><dd>{{ object.description|default:"—" }}</dd></div>
+    <div class="md:col-span-2"><dt class="font-semibold">Members</dt>
+      <dd>
+        <ul class="list-disc ml-6">
+          {% for m in object.members.all %}
+            <li><a class="text-indigo-600 dark:text-indigo-400 hover:underline" href="{% url 'intelligence:identity_detail' m.id %}">{{ m }}</a></li>
+          {% empty %}
+            <li class="text-slate-500 dark:text-slate-400">No members.</li>
+          {% endfor %}
+        </ul>
+      </dd>
+    </div>
+  </dl>
+{% endblock %}

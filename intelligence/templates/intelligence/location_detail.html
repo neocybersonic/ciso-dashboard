@@ -1,0 +1,13 @@
+{% include "intelligence/_detail_base.html" with subtitle="Location detail" %}
+{% block fields %}
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><dt class="font-semibold">Type</dt><dd>{{ object.get_type_display }}</dd></div>
+    <div><dt class="font-semibold">Address</dt><dd>{{ object.address|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">City</dt><dd>{{ object.city|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">State/Region</dt><dd>{{ object.state_region|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Country</dt><dd>{{ object.country|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Tier</dt><dd>{{ object.get_tier_display }}</dd></div>
+    <div><dt class="font-semibold">Lifecycle</dt><dd>{{ object.get_lifecycle_state_display }}</dd></div>
+    <div class="md:col-span-2"><dt class="font-semibold">Description</dt><dd>{{ object.description|default:"—" }}</dd></div>
+  </dl>
+{% endblock %}

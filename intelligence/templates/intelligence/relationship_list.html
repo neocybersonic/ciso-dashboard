@@ -1,0 +1,17 @@
+{% include "intelligence/_list_base.html" with title="Entity Relationships" headers=headers %}
+{% block rows %}
+  {% for r in object_list %}
+  <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30">
+    <td class="px-4 py-2">{{ r.get_from_entity_type_display }}</td>
+    <td class="px-4 py-2 font-mono text-xs">{{ r.from_entity_id }}</td>
+    <td class="px-4 py-2">{{ r.get_relationship_type_display }}</td>
+    <td class="px-4 py-2">{{ r.get_to_entity_type_display }}</td>
+    <td class="px-4 py-2 font-mono text-xs">{{ r.to_entity_id }}</td>
+    <td class="px-4 py-2">{{ r.get_source_display }}</td>
+    <td class="px-4 py-2">{{ r.confidence }}</td>
+    <td class="px-4 py-2 text-sm text-slate-500 dark:text-slate-400">{{ r.updated_at|date:"Y-m-d H:i" }}</td>
+  </tr>
+  {% empty %}
+  <tr><td class="px-4 py-6 text-slate-500 dark:text-slate-400" colspan="8">No relationships yet.</td></tr>
+  {% endfor %}
+{% endblock %}

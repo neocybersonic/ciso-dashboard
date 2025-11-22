@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mx-auto max-w-6xl p-6">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+      {{ title }}
+    </h1>
+  </div>
+
+  <div class="overflow-x-auto bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm">
+    <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+      <thead class="bg-slate-50 dark:bg-slate-900/40">
+        <tr>
+          {% for h in headers %}
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+              {{ h }}
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+        {% block rows %}{% endblock %}
+      </tbody>
+    </table>
+  </div>
+
+  {% if is_paginated %}
+  <div class="mt-6 flex gap-2">
+    {% if page_obj.has_previous %}
+      <a class="px-3 py-1 rounded bg-slate-200 dark:bg-slate-700" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+    {% endif %}
+    <span class="px-3 py-1 text-slate-700 dark:text-slate-200">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+    {% if page_obj.has_next %}
+      <a class="px-3 py-1 rounded bg-slate-200 dark:bg-slate-700" href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

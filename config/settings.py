@@ -17,7 +17,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
-    'core', 'widget_tweaks',
+    'core', 'widget_tweaks', 'common', 'risks', 'controls', 'dashboard', 'intelligence',
 ]
 
 MIDDLEWARE = [
@@ -32,6 +32,7 @@ MIDDLEWARE = [
     'core.middleware.LoginRequiredMiddleware',
     # Block write methods for non-admins
     'core.middleware.ReadOnlyRoleMiddleware',
+    'core.middleware.OrganizationMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'

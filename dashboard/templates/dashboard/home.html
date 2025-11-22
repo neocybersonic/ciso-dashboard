@@ -1,0 +1,23 @@
+{# dashboard/templates/dashboard/home.html #}
+{% extends "base.html" %}
+{% load core_tags %}
+{% block content %}
+<div class="p-8">
+  <h1 class="text-2xl font-semibold mb-6">CISO Dashboard</h1>
+
+  {% if has_feature "controls" %}
+  <section class="p-4 bg-red-100 dark:bg-red-900/40 border border-red-300 dark:border-red-700 rounded-lg">
+    <h2 class="text-xl font-medium mb-2 text-red-700 dark:text-red-300">🚨 Failing Controls</h2>
+    {% if failing_controls %}
+      <ul class="list-disc pl-5 text-red-800 dark:text-red-200">
+        {% for c in failing_controls %}
+          <li>{{ c.short_description }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-slate-600 dark:text-slate-300">No failing controls.</p>
+    {% endif %}
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

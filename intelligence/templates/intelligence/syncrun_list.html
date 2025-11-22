@@ -1,0 +1,20 @@
+{% include "intelligence/_list_base.html" with title="Connector Sync Runs" headers=headers %}
+{% block rows %}
+  {% for s in object_list %}
+  <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30">
+    <td class="px-4 py-2">{{ s.get_source_display }}</td>
+    <td class="px-4 py-2">{{ s.started_at|date:"Y-m-d H:i" }}</td>
+    <td class="px-4 py-2">{{ s.finished_at|default:"—" }}</td>
+    <td class="px-4 py-2">
+      {% if s.success %}
+      <span class="inline-flex px-2 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300">Yes</span>
+      {% else %}
+      <span class="inline-flex px-2 py-0.5 rounded bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300">No</span>
+      {% endif %}
+    </td>
+    <td class="px-4 py-2 text-sm text-slate-600 dark:text-slate-300">{{ s.summary|default:s.error|default:"—" }}</td>
+  </tr>
+  {% empty %}
+  <tr><td class="px-4 py-6 text-slate-500 dark:text-slate-400" colspan="5">No sync runs yet.</td></tr>
+  {% endfor %}
+{% endblock %}

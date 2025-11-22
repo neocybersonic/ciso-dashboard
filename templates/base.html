@@ -1,5 +1,9 @@
 {% load static %}
 {% load user_extras %}
+{% load core_tags %}
+{% has_feature "risks" as risks_enabled %}
+{% has_feature "controls" as controls_enabled %}
+
 <!DOCTYPE html>
 <html lang="en" class="h-full">
   <head>
@@ -22,15 +26,28 @@
           </button>
         </div>
 
-        <nav class="space-y-2">
-          <a href="{% url 'core:home' %}" class="nav-link">🏠 Home</a>
-          <a href="#" class="nav-link">📊 Module 2</a>
-          <a href="#" class="nav-link">🚨 Module 3</a>
+        {% load core_tags %}
+<nav class="p-4 bg-slate-800 text-white h-full">
+  <ul class="space-y-2">
+  <li><a href="{% url 'dashboard:home' %}" class="hover:text-yellow-400">🏠 Dashboard</a></li>
+    {% if risks_enabled %}
+      <li>
+        <a href="{% url 'risks:list' %}" class="hover:text-yellow-400">⚠️ Risks</a>
+      </li>
+    {% endif %}
 
-          <hr class="border-slate-700 my-4" />
+    {% if controls_enabled %}
+      <li>
+        <a href="{% url 'controls:list' %}" class="hover:text-yellow-400">🛡️ Controls</a>
+      </li>
+    {% endif %}
+    <li><a href="{% url 'intelligence:dashboard' %}" class="nav-link">🧠 Intelligence</a></li>
+  </ul>
+            <hr class="border-slate-700 my-4" />
           <a href="#" class="nav-link">👥 Administration</a>
           <a href="#" class="nav-link">⚙️ Settings</a>
-        </nav>
+</nav>
+
       </aside>
 
       <!-- Header -->

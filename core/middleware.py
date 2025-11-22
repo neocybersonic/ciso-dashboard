@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.deprecation import MiddlewareMixin
 from django.http import HttpResponseForbidden
+from .models import Organization
 
 # ==== Public/exempt endpoints (no auth required) ====
 EXEMPT_PATHS = [
@@ -78,3 +79,16 @@ class ReadOnlyRoleMiddleware(MiddlewareMixin):
 
         # Everyone else is read-only
         return HttpResponseForbidden("Write operations are restricted to admin users.")
+
+class OrganizationMiddleware(MiddlewareMixin):
+    """
+    Attach request.org. Start simple:
+    - Single-tenant: pick the first/only org.
+    - Later: derive from user profile, subdomain, or header.
+    """
+    def process_request(self, request):
+        if hasattr(request, "org"):
+            return
+        # TEMP: single-tenant default
+        org = Organization.objects.order_by("created_at").first()
+        request.org = org

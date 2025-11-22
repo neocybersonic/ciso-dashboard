@@ -1,0 +1,17 @@
+{% include "intelligence/_detail_base.html" with subtitle="Asset detail" %}
+{% block fields %}
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><dt class="font-semibold">Type</dt><dd>{{ object.get_type_display }}</dd></div>
+    <div><dt class="font-semibold">Criticality</dt><dd>{{ object.get_criticality_display }}</dd></div>
+    <div><dt class="font-semibold">Data Classification</dt><dd>{{ object.get_data_classification_display }}</dd></div>
+    <div><dt class="font-semibold">Owner Person</dt><dd>{{ object.owner_person|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Owner Team</dt><dd>{{ object.owner_team|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Business Service</dt><dd>{{ object.business_service|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Environment</dt><dd>{{ object.environment|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Location</dt><dd>{{ object.location|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Lifecycle</dt><dd>{{ object.get_lifecycle_state_display }}</dd></div>
+    <div><dt class="font-semibold">First Seen</dt><dd>{{ object.first_seen_at|default:"—" }}</dd></div>
+    <div><dt class="font-semibold">Last Seen</dt><dd>{{ object.last_seen_at|default:"—" }}</dd></div>
+    <div class="md:col-span-2"><dt class="font-semibold">Description</dt><dd>{{ object.description|default:"—" }}</dd></div>
+  </dl>
+{% endblock %}

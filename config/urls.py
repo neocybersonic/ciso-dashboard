@@ -38,5 +38,9 @@ urlpatterns = [
     path("healthz/", healthz, name="healthz"),
     path("", include("core.urls")),  # yosubliur app routes; ensure 'home' exists
     path("accounts/", include("django.contrib.auth.urls")),
+    path("", include("dashboard.urls", namespace="dashboard")),
+    path("risks/", include("risks.urls", namespace="risks")),
+    path("controls/", include("controls.urls", namespace="controls")),
+    path("intelligence/", include("intelligence.urls")),
 ]
 
